@@ -1,4 +1,4 @@
-name: Run SonalCloud with Maven!!
+name: Run SonarCloud with Maven!!**
 
 on: push
 
