@@ -1,0 +1,20 @@
+name: Run SonalCloud with Maven
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: action/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven cloud
+      run: mvn -B verify sonar:sonar -Dsonar.projectKey=java-project-7325_java-project-dn -Dsonar.organization=java_project_7325 -Dsnoar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
